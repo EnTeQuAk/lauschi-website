@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>lauschi - Hörspiel-Player für Kinder</title>
+  <meta name="description" content="lauschi ist ein Hörspiel-Player für Kinder. Eltern stellen Inhalte zusammen, Kinder tippen auf eine Kachel und hören los. Ohne Algorithmen, ohne Werbung, ohne Ablenkung.">
+  <meta property="og:title" content="lauschi - Hörspiel-Player für Kinder">
+  <meta property="og:description" content="Eltern stellen Inhalte zusammen, Kinder tippen auf eine Kachel und hören los.">
+  <meta property="og:image" content="https://lauschi.app/mascot.png">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-50: #f0fdf4;
+      --green-100: #dcfce7;
+      --green-200: #bbf7d0;
+      --green-500: #22c55e;
+      --green-600: #16a34a;
+      --green-700: #15803d;
+      --green-800: #166534;
+      --green-900: #14532d;
+      --sand-50: #faf8f5;
+      --sand-100: #f5f0ea;
+      --sand-200: #e8e0d4;
+      --sand-300: #d4c8b8;
+      --sand-400: #b8a890;
+      --sand-500: #96836a;
+      --sand-600: #6b5d4a;
+      --sand-700: #4a4035;
+      --sand-800: #2d2620;
+      --sand-900: #1a1612;
+      --accent: #c47a4a;
+      --font: 'Nunito', system-ui, sans-serif;
+      --max-w: 64rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 3rem;
+      --space-xl: 5rem;
+      --space-2xl: 8rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+
+    body {
+      font-family: var(--font);
+      color: var(--sand-800);
+      background: var(--sand-50);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 { text-wrap: balance; }
+    p, li { text-wrap: pretty; }
+    a { color: var(--green-700); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* --- HERO --- */
+    .hero {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding: var(--space-2xl) var(--space-md) var(--space-xl);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    .hero-text h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      line-height: 1.2;
+      color: var(--sand-900);
+      margin-block-end: var(--space-md);
+      font-weight: 800;
+    }
+    .hero-text h1 em {
+      font-style: normal;
+      color: var(--green-700);
+    }
+    .hero-text p {
+      font-size: 1.15rem;
+      color: var(--sand-600);
+      max-inline-size: 36rem;
+      margin-block-end: var(--space-lg);
+    }
+    .hero-actions {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--green-700);
+      color: white;
+      padding: 0.85rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: var(--font);
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: var(--green-800); text-decoration: none; }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--sand-700);
+      padding: 0.85rem 1.8rem;
+      border-radius: 50px;
+      border: 2px solid var(--sand-300);
+      font-weight: 600;
+      font-size: 1rem;
+      font-family: var(--font);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-secondary:hover { border-color: var(--sand-500); color: var(--sand-900); text-decoration: none; }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+    }
+    .hero-visual img {
+      width: 100%;
+      max-inline-size: 380px;
+      filter: drop-shadow(0 24px 48px rgba(0,0,0,0.08));
+    }
+
+    /* --- FEATURES --- */
+    section {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding: var(--space-xl) var(--space-md);
+    }
+    section h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      color: var(--sand-900);
+      margin-block-end: var(--space-sm);
+      font-weight: 800;
+    }
+    section .subtitle {
+      color: var(--sand-500);
+      font-size: 1.05rem;
+      max-inline-size: 38rem;
+      margin-block-end: var(--space-lg);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+      gap: var(--space-md);
+    }
+    .feature-card {
+      padding: var(--space-md);
+      border: 2px solid var(--sand-200);
+      border-radius: 16px;
+      background: white;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .feature-card:hover {
+      border-color: var(--green-200);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .feature-icon {
+      font-size: 2rem;
+      margin-block-end: var(--space-sm);
+    }
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-block-end: 0.4rem;
+      color: var(--sand-900);
+    }
+    .feature-card p {
+      font-size: 0.95rem;
+      color: var(--sand-600);
+      line-height: 1.6;
+    }
+
+    /* --- HOW IT WORKS --- */
+    .how-section {
+      background: var(--green-800);
+      color: var(--green-100);
+      max-width: none;
+      padding: var(--space-xl) var(--space-md);
+    }
+    .how-section .inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .how-section h2 { color: white; }
+    .how-section .subtitle { color: var(--green-200); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+      gap: var(--space-md);
+    }
+    .step {
+      text-align: center;
+      padding: var(--space-md);
+    }
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      color: white;
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin-block-end: var(--space-sm);
+    }
+    .step h3 {
+      color: white;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-block-end: 0.4rem;
+    }
+    .step p {
+      font-size: 0.95rem;
+      color: var(--green-200);
+      line-height: 1.6;
+    }
+
+    /* --- PRIVACY CALLOUT --- */
+    .privacy-callout {
+      background: var(--green-50);
+      border: 2px solid var(--green-200);
+      border-radius: 16px;
+      padding: var(--space-lg);
+      margin-block-start: var(--space-lg);
+      display: flex;
+      gap: var(--space-md);
+      align-items: flex-start;
+    }
+    .privacy-callout .icon { font-size: 2rem; flex-shrink: 0; }
+    .privacy-callout h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--green-800);
+      margin-block-end: 0.3rem;
+    }
+    .privacy-callout p {
+      color: var(--sand-600);
+      font-size: 0.95rem;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      border-block-start: 2px solid var(--sand-200);
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+      color: var(--sand-500);
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--sand-600); }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      margin-block-end: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    /* --- BADGE ROW --- */
+    .badge-row {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-block-start: var(--space-md);
+    }
+    .badge-row img { height: 44px; }
+    .badge-coming {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background: var(--sand-100);
+      color: var(--sand-500);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: var(--space-xl) var(--space-md) var(--space-lg);
+        text-align: center;
+      }
+      .hero-visual { order: -1; }
+      .hero-visual img { max-inline-size: 240px; }
+      .hero-actions { justify-content: center; }
+      .privacy-callout { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-text">
+    <h1>Hörspiele für Kinder.<br><em>Einfach und sicher.</em></h1>
+    <p>
+      Eltern stellen Inhalte zusammen, Kinder tippen auf eine Kachel und
+      hören los. Ohne Algorithmen, ohne Werbung, ohne Ablenkung.
+    </p>
+    <div class="hero-actions">
+      <span class="badge-coming">Bald im Play Store und App Store</span>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="mascot.png" alt="lauschi, ein kleiner grüner Fuchs mit Kopfhörern">
+  </div>
+</div>
+
+<section>
+  <h2>Was ist lauschi?</h2>
+  <p class="subtitle">
+    Ein Hörspiel-Player, den Kinder allein bedienen können. Große Kacheln,
+    keine Textwände, kein Doom-Scrolling.
+  </p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🎧</div>
+      <h3>Kuratiert von Eltern</h3>
+      <p>Ihr entscheidet, was eure Kinder hören. Serien aus der ARD Audiothek mit einem Tipp hinzufügen.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧩</div>
+      <h3>Kinderleicht</h3>
+      <p>Große, bunte Kacheln. Kein Lesen nötig. Antippen, zuhören, fertig.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3>Elternbereich mit PIN</h3>
+      <p>Inhalte verwalten, Kacheln sortieren, Serien hinzufügen. Alles hinter einer PIN geschützt.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📡</div>
+      <h3>ARD Audiothek</h3>
+      <p>Tausende kostenlose Hörspiele: Betthupferl, Die Sendung mit der Maus, CheckPod, Ohrenbär und mehr.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🦊</div>
+      <h3>lauschi, der Fuchs</h3>
+      <p>Ein freundlicher Begleiter, der Kindern zeigt, wenn mal was nicht klappt. Kein roter Fehlertext.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💚</div>
+      <h3>Kostenlos, ohne Tracking</h3>
+      <p>Keine Accounts, keine Werbung, keine Analyse. Die App sammelt keine persönlichen Daten.</p>
+    </div>
+  </div>
+</section>
+
+<div class="how-section">
+  <div class="inner">
+    <h2>So funktioniert's</h2>
+    <p class="subtitle">In drei Schritten startklar.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>App einrichten</h3>
+        <p>lauschi installieren und eine PIN für den Elternbereich festlegen.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Hörspiele aussuchen</h3>
+        <p>Im Elternbereich Serien aus der ARD Audiothek durchstöbern und hinzufügen.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Kinder hören los</h3>
+        <p>Handy oder Tablet in die Hand geben. Kachel antippen, Hörspiel läuft.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="privacy-callout">
+    <div class="icon">🛡️</div>
+    <div>
+      <h3>Privatsphäre an erster Stelle</h3>
+      <p>
+        lauschi sammelt keine persönlichen Daten. Keine Accounts, keine
+        Analyse, kein Tracking. Alle Daten (Kacheln, Wiedergabeposition)
+        bleiben lokal auf dem Gerät. Die App enthält keine Werbung
+        und keine In-App-Käufe.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="/privacy">Datenschutz</a>
+    <a href="mailto:privacy@lauschi.app">Kontakt</a>
+  </div>
+  <p>&copy; 2026 lauschi. Mit 💚 für Kinder gemacht.</p>
+</footer>
+
+</body>
+</html>
