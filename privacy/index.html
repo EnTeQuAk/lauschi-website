@@ -88,6 +88,14 @@
       color: var(--sand-500);
       font-size: 0.9rem;
     }
+    footer a { color: var(--sand-600); }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-block-end: 0.5rem;
+      flex-wrap: wrap;
+    }
   </style>
 </head>
 <body>
@@ -95,12 +103,12 @@
 <div class="content">
   <a href="/" class="back">← lauschi</a>
   <h1>Datenschutzerklärung</h1>
-  <p class="date">Stand: 6. März 2026</p>
+  <p class="date">Stand: 7. März 2026</p>
 
   <h2>Kurzfassung</h2>
   <p>
     lauschi sammelt keine persönlichen Daten. Die App hat keine Benutzerkonten,
-    kein Tracking, keine Analyse und keine Werbung.
+    kein Tracking, keine Analyse und keine Werbung. Alles bleibt auf eurem Gerät.
   </p>
 
   <h2>Verantwortlicher</h2>
@@ -118,7 +126,13 @@
   </ul>
   <p>
     Diese Daten verlassen das Gerät nicht und werden nicht an uns oder
-    Dritte übermittelt.
+    Dritte übermittelt. Es gibt keine Registrierung und keine Benutzerkonten.
+  </p>
+
+  <h2>Standortdaten</h2>
+  <p>
+    lauschi erhebt keine Standortdaten. Die App fragt weder nach dem Standort
+    noch greift sie auf GPS oder andere Ortungsdienste zu.
   </p>
 
   <h2>Netzwerkverbindungen</h2>
@@ -133,33 +147,66 @@
     her. Es werden keine Analyse-, Tracking- oder Werbedienste eingebunden.
   </p>
 
+  <h2>Weitergabe an Dritte</h2>
+  <p>
+    Da lauschi keine persönlichen Daten erhebt, werden auch keine Daten
+    an Dritte weitergegeben.
+  </p>
+
   <h2>Kinder</h2>
   <p>
-    lauschi ist für Kinder konzipiert. Die App erhebt keine personenbezogenen
-    Daten von Kindern oder Erwachsenen. Es gibt keine Registrierung, keine
-    Chat-Funktionen und keine nutzergenerierten Inhalte.
+    lauschi ist ausdrücklich für Kinder konzipiert. Die App erhebt keine
+    personenbezogenen Daten, weder von Kindern noch von Erwachsenen. Es
+    gibt keine Registrierung, keine Chat-Funktionen, keine nutzergenerierten
+    Inhalte und keine Möglichkeit, persönliche Informationen einzugeben.
+  </p>
+  <p>
+    Solltet ihr den Eindruck haben, dass über die App doch personenbezogene
+    Daten eines Kindes an uns gelangt sind, meldet euch bitte unter
+    <a href="mailto:privacy@lauschi.app">privacy@lauschi.app</a>,
+    damit wir das klären können.
   </p>
 
   <h2>Berechtigungen</h2>
   <p>Die App benötigt ausschließlich Internetzugang, um Hörspiele zu streamen.</p>
 
-  <h2>Ihre Rechte</h2>
+  <h2>Sicherheit</h2>
+  <p>
+    Da lauschi keine persönlichen Daten erhebt oder überträgt, besteht kein
+    Risiko, dass eure Daten in falsche Hände geraten. Die lokalen Daten
+    auf dem Gerät (Kacheln, Wiedergabeposition) sind durch die normalen
+    Sicherheitsmechanismen eures Betriebssystems geschützt.
+  </p>
+
+  <h2>Eure Rechte</h2>
   <p>
     Da wir keine personenbezogenen Daten erheben, fallen die typischen
     Betroffenenrechte (Auskunft, Löschung, Berichtigung) praktisch nicht
-    an. Bei Fragen wenden Sie sich an
+    an. Ihr könnt jegliche lokale Datenspeicherung beenden, indem ihr
+    die App deinstalliert. Bei Fragen wendet euch an
     <a href="mailto:privacy@lauschi.app">privacy@lauschi.app</a>.
   </p>
 
   <h2>Änderungen</h2>
   <p>
     Sollte sich der Umfang der Datenverarbeitung ändern, wird diese
-    Datenschutzerklärung entsprechend aktualisiert.
+    Datenschutzerklärung entsprechend aktualisiert. Die aktuelle Fassung
+    ist immer auf dieser Seite zu finden.
+  </p>
+
+  <h2>Einwilligung</h2>
+  <p>
+    Mit der Nutzung von lauschi stimmt ihr der Verarbeitung eurer Daten
+    im Rahmen dieser Datenschutzerklärung zu.
   </p>
 </div>
 
 <footer>
-  <a href="/">← Zurück zu lauschi</a>
+  <div class="footer-links">
+    <a href="/">← Zurück zu lauschi</a>
+    <a href="/terms">Nutzungsbedingungen</a>
+    <a href="mailto:privacy@lauschi.app">Kontakt</a>
+  </div>
 </footer>
 
 </body>
