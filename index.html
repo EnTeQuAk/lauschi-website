@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light">
   <title>lauschi - Hörspiel-Player für Kinder</title>
-  <meta name="description" content="lauschi ist ein Hörspiel-Player für Kinder. Eltern stellen Inhalte zusammen, Kinder tippen auf eine Kachel und hören los. Ohne Algorithmen, ohne Werbung, ohne Ablenkung.">
+  <meta name="description" content="lauschi ist ein Hörspiel-Player für Kinder. Eltern stellen Hörspiele aus der ARD Audiothek und Apple Music zusammen, Kinder tippen auf eine Kachel und hören los. Ohne Algorithmen, ohne Werbung, ohne Ablenkung.">
   <meta property="og:title" content="lauschi - Hörspiel-Player für Kinder">
   <meta property="og:description" content="Eltern stellen Inhalte zusammen, Kinder tippen auf eine Kachel und hören los.">
   <meta property="og:image" content="https://lauschi.app/mascot.png">
@@ -292,14 +292,8 @@
       flex-wrap: wrap;
     }
 
-    /* --- BADGE ROW --- */
-    .badge-row {
-      display: flex;
-      gap: var(--space-sm);
-      flex-wrap: wrap;
-      margin-block-start: var(--space-md);
-    }
-    .badge-row img { height: 44px; }
+    /* --- STORE BADGE --- */
+    .store-badge img { height: 64px; display: block; }
     .badge-coming {
       display: inline-flex;
       align-items: center;
@@ -335,7 +329,10 @@
       hören los. Ohne Algorithmen, ohne Werbung, ohne Ablenkung.
     </p>
     <div class="hero-actions">
-      <span class="badge-coming">Bald im Play Store und App Store</span>
+      <a href="https://play.google.com/store/apps/details?id=app.lauschi.lauschi" class="store-badge" aria-label="lauschi bei Google Play herunterladen (offene Beta)">
+        <img src="google-play-badge.png" alt="Jetzt bei Google Play">
+      </a>
+      <span class="badge-coming">Android: offene Beta · iPhone: bald</span>
     </div>
   </div>
   <div class="hero-visual">
@@ -353,7 +350,7 @@
     <div class="feature-card">
       <div class="feature-icon">🎧</div>
       <h3>Kuratiert von Eltern</h3>
-      <p>Ihr entscheidet, was eure Kinder hören. Serien aus der ARD Audiothek mit einem Tipp hinzufügen.</p>
+      <p>Ihr entscheidet, was eure Kinder hören. Serien aus der ARD Audiothek oder Apple Music mit einem Tipp hinzufügen.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🧩</div>
@@ -369,6 +366,21 @@
       <div class="feature-icon">📡</div>
       <h3>ARD Audiothek</h3>
       <p>Tausende kostenlose Hörspiele: Betthupferl, Die Sendung mit der Maus, CheckPod, Ohrenbär und mehr.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎵</div>
+      <h3>Apple Music</h3>
+      <p>Ihr habt ein Apple-Music-Abo? Dann holt lauschi eure Hörspiele daraus in die Kinderansicht, ohne Empfehlungen und ohne Store.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📚</div>
+      <h3>Geprüfter Katalog</h3>
+      <p>Über 280 Hörspielreihen von TKKG bis Conni, die Folgen in der richtigen Reihenfolge. Lesungen, Sammelalben und Filmmusik sind aussortiert.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏷️</div>
+      <h3>NFC-Karten</h3>
+      <p>Einen NFC-Sticker mit einer Kachel verknüpfen, ans Handy halten, und das Hörspiel läuft. Zum Anfassen, ganz ohne Box.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon"><img src="lauschi-icon.png" alt="lauschi" style="width:48px;height:48px;object-fit:contain;"></div>
@@ -396,7 +408,7 @@
       <div class="step">
         <div class="step-number">2</div>
         <h3>Hörspiele aussuchen</h3>
-        <p>Im Elternbereich Serien aus der ARD Audiothek durchstöbern und hinzufügen.</p>
+        <p>Im Elternbereich Serien aus der ARD Audiothek oder Apple Music durchstöbern und hinzufügen.</p>
       </div>
       <div class="step">
         <div class="step-number">3</div>
@@ -420,6 +432,15 @@
       </p>
     </div>
   </div>
+</section>
+
+<section class="feedback">
+  <h2>lauschi ist noch in der Beta</h2>
+  <p class="subtitle">
+    Welche Reihe fehlt dir, was hat dich verwirrt, was mag dein Kind?
+    Schreib mir an <a href="mailto:privacy@lauschi.app?subject=Feedback%20zu%20lauschi">privacy@lauschi.app</a>,
+    ich lese jede Nachricht.
+  </p>
 </section>
 
 <footer>
