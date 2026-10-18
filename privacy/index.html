@@ -120,7 +120,7 @@
 <div class="content">
   <a href="/" class="back">← lauschi</a>
   <h1>Datenschutzerklärung</h1>
-  <p class="date">Stand: 7. März 2026</p>
+  <p class="date">Stand: 18. Oktober 2026</p>
 
   <h2>Kurzfassung</h2>
   <p>
@@ -140,6 +140,8 @@
     <li>Kachel-Konfiguration (welche Serien hinzugefügt wurden)</li>
     <li>Wiedergabeposition und Fortschritt pro Folge</li>
     <li>Die selbst gewählte PIN für den Elternbereich</li>
+    <li>Wenn ihr Apple Music verbindet: den Anmeldeschlüssel von Apple Music, verschlüsselt im sicheren Speicher des Geräts</li>
+    <li>Wenn ihr NFC-Sticker nutzt: die Kennung jedes Stickers, welche Kachel er startet und den Namen, den ihr ihm gebt</li>
   </ul>
   <p>
     Diese Daten verlassen das Gerät nicht und werden nicht an uns oder
@@ -158,6 +160,22 @@
     streamen und Serieninformationen (Titel, Coverbilder, Folgenlisten)
     abzurufen. Dabei gelten die
     <a href="https://www.ardaudiothek.de/datenschutz" target="_blank" rel="noopener">Datenschutzbestimmungen der ARD Audiothek</a>.
+  </p>
+  <p>
+    Wenn ihr Apple Music verbindet, spricht die App mit den Diensten von
+    Apple: für die Anmeldung, den Katalog, die Wiedergabe und die
+    Coverbilder. Apple erfährt dabei, dass euer Apple-Konto Musik und
+    Hörspiele über lauschi abspielt. Dafür gilt die
+    <a href="https://www.apple.com/de/legal/privacy/" target="_blank" rel="noopener">Datenschutzrichtlinie von Apple</a>.
+  </p>
+  <p>
+    Auf Android läuft die Anmeldung bei Apple Music über eine kleine Seite
+    auf <code>auth.lauschi.app</code>, die auf unserem eigenen Server bei
+    Hetzner in Deutschland liegt. Dieser Server speichert keine
+    IP-Adressen und keine Anmeldedaten. Er protokolliert nur, wann welche
+    Seite aufgerufen wurde und ob das geklappt hat, und löscht diese
+    Protokolle nach etwa zwei Wochen. Den Anmeldeschlüssel von Apple reicht er
+    direkt an die App weiter, ohne ihn zu speichern.
   </p>
   <p>
     Darüber hinaus stellt die App keine Verbindungen zu anderen Diensten
@@ -185,7 +203,12 @@
   </p>
 
   <h2>Berechtigungen</h2>
-  <p>Die App benötigt ausschließlich Internetzugang, um Hörspiele zu streamen.</p>
+  <ul>
+    <li>Internetzugang, um Hörspiele zu streamen.</li>
+    <li>Wiedergabe im Hintergrund, damit ein Hörspiel weiterläuft, wenn der Bildschirm ausgeht.</li>
+    <li>Auf dem iPhone den Zugriff auf Apple Music, wenn ihr Apple Music verbindet.</li>
+    <li>NFC, nur wenn ihr NFC-Sticker in den Einstellungen einschaltet. Ohne NFC funktioniert die App genauso.</li>
+  </ul>
 
   <h2>Sicherheit</h2>
   <p>
