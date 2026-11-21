@@ -1,0 +1,5 @@
+# Search engines and AI assistants are welcome to read and link to lauschi.app.
+User-agent: *
+Disallow:
+
+Sitemap: https://lauschi.app/sitemap.xml
