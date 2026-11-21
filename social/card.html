@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+  The preview image link previews show (og:image), at 1200x630.
+  When you change the hero text, update it here too and regenerate
+  social/card.jpg from the repo root:
+
+    python3 -m http.server 8931 &
+    google-chrome-stable --headless=new --hide-scrollbars --window-size=1200,630 \
+      --screenshot=/tmp/card.png http://127.0.0.1:8931/social/card.html
+    magick /tmp/card.png -quality 85 social/card.jpg
+
+  WhatsApp drops previews with large images, so keep the JPEG well under 300 KB.
+-->
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex">
+  <title>lauschi Vorschaubild</title>
+  <link rel="stylesheet" href="/site.css">
+  <style>
+    body { display: block; min-block-size: 0; }
+    .card {
+      inline-size: 1200px;
+      block-size: 630px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding-inline: 88px 120px;
+      overflow: clip;
+      text-align: start;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-block-end: 1.5rem;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--green-700);
+      & img { inline-size: 64px; }
+    }
+    .card h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--sand-900);
+      & em { font-style: normal; color: var(--green-700); }
+    }
+    .card .trust { justify-content: start; margin-block-start: 2rem; font-size: 1.3rem; }
+    .card .hero-visual { justify-self: end; }
+    .card .shot { --phone-w: 250px; }
+    .card .hero-mascot { inline-size: 170px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div>
+      <p class="brand"><img src="/lauschi-icon.png" alt="" width="512" height="512"> lauschi.app</p>
+      <h1>Hörspiele für Kinder.<br><em>Einfach und sicher.</em></h1>
+      <ul class="trust">
+        <li>Keine Werbung</li>
+        <li>Kein Tracking</li>
+        <li>Kein lauschi-Konto</li>
+      </ul>
+    </div>
+    <div class="hero-visual">
+      <div class="shot">
+        <div class="phone">
+          <img src="/screenshots/01_home.webp" width="600" height="1192" alt="">
+        </div>
+      </div>
+      <img class="hero-mascot" src="/mascot.webp" width="400" height="400" alt="">
+    </div>
+  </div>
+</body>
+</html>
