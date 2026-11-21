@@ -1,0 +1,480 @@
+/* Shared styles for every page on lauschi.app. No build step: edit and reload. */
+
+/* Nunito (SIL Open Font License), self-hosted so no request goes to Google. */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(/fonts/nunito-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(/fonts/nunito-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --green-50: #f0fdf4;
+  --green-100: #dcfce7;
+  --green-200: #bbf7d0;
+  --green-500: #22c55e;
+  --green-600: #16a34a;
+  --green-700: #15803d;
+  --green-800: #166534;
+  --sand-50: #faf8f5;
+  --sand-100: #f5f0ea;
+  --sand-200: #e8e0d4;
+  --sand-500: #96836a;
+  --sand-600: #6b5d4a;
+  --sand-700: #4a4035;
+  --sand-800: #2d2620;
+  --sand-900: #1a1612;
+  /* Lighter than body text but still 4.9:1 on sand-50 and 4.6:1 on sand-100,
+     so it passes WCAG AA for small text. sand-500 is only 3.4:1. */
+  --text-muted: #7a6a55;
+  --font: 'Nunito', system-ui, sans-serif;
+  --max-w: 65rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 3rem;
+  --space-xl: 5rem;
+  --radius-card: 24px;
+  --radius-pill: 999px;
+  --shadow-phone: 0 30px 60px -20px color-mix(in srgb, var(--sand-900) 35%, transparent);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* main takes the leftover height, so short pages like the terms still put
+   the footer at the bottom of the screen. dvh tracks the visible viewport,
+   so the footer doesn't end up behind a mobile browser toolbar. The minmax
+   keeps the column at the viewport width, where auto would grow it to fit
+   the widest unbreakable content. */
+body {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: minmax(0, 1fr);
+  min-block-size: 100dvh;
+  font-family: var(--font);
+  color: var(--sand-800);
+  background: var(--sand-50);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  /* Keeps the decorative blobs and the hero mascot from causing sideways
+     scrolling. Unlike hidden, clip doesn't turn body into a scroll container. */
+  overflow-x: clip;
+}
+
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+img { display: block; max-inline-size: 100%; height: auto; }
+
+a {
+  color: var(--green-700);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+  &:focus-visible { outline: 3px solid var(--green-500); outline-offset: 3px; border-radius: 8px; }
+}
+
+footer {
+  border-block-start: 2px solid var(--sand-200);
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  & a {
+    color: var(--sand-600);
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm) var(--space-md);
+  margin-block-end: var(--space-sm);
+}
+
+/* --- LANDING PAGE --- */
+
+/* Every band of the landing page spans the full width, so a background like
+   the green of .how reaches the edges, while the padding keeps the content in
+   a centered column of at most --max-w. */
+main > section {
+  padding-block: var(--space-xl);
+  padding-inline: max(var(--space-md), (100% - var(--max-w)) / 2);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.2;
+  color: var(--sand-900);
+  margin-block-end: var(--space-sm);
+  font-weight: 800;
+}
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-inline-size: 38rem;
+  margin-block-end: var(--space-lg);
+}
+.centered {
+  text-align: center;
+  & .subtitle { margin-inline: auto; }
+}
+
+/* A screenshot in a dark bezel, sitting on a soft blob in the palette. */
+.shot {
+  --phone-w: 220px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding-block: var(--space-md);
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 4% -4%;
+    background: var(--blob, var(--green-100));
+    border-radius: 46% 54% 42% 58% / 56% 44% 56% 44%;
+  }
+}
+.phone {
+  --bezel: 9px;
+  --radius-phone: 38px;
+  position: relative;
+  inline-size: var(--phone-w);
+  padding: var(--bezel);
+  background: var(--sand-900);
+  border-radius: var(--radius-phone);
+  box-shadow: var(--shadow-phone);
+  & img { inline-size: 100%; border-radius: calc(var(--radius-phone) - var(--bezel)); }
+}
+
+.hero {
+  display: grid;
+  gap: var(--space-lg);
+  padding-block: var(--space-lg);
+  align-items: center;
+  text-align: center;
+
+  & h1 {
+    font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+    line-height: 1.1;
+    color: var(--sand-900);
+    margin-block-end: var(--space-md);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    & em { font-style: normal; color: var(--green-700); }
+  }
+  & p {
+    font-size: 1.2rem;
+    color: var(--sand-600);
+    max-inline-size: 32rem;
+    margin-inline: auto;
+    margin-block-end: var(--space-lg);
+  }
+
+  @media (width > 820px) {
+    grid-template-columns: 1.15fr 1fr;
+    padding-block: var(--space-xl);
+    text-align: start;
+    & p { margin-inline: 0; }
+  }
+}
+.hero-actions, .trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  @media (width > 820px) { justify-content: start; }
+}
+.hero-actions { gap: var(--space-sm); }
+.badge-coming {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: var(--sand-100);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.trust {
+  gap: 0.4rem 1.4rem;
+  list-style: none;
+  margin-block-start: var(--space-md);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--sand-600);
+  & li::before {
+    /* The empty alt text keeps screen readers from announcing "check mark". */
+    content: '✓' / '';
+    color: var(--green-600);
+    margin-inline-end: 0.4rem;
+    font-weight: 800;
+  }
+}
+/* The phone and the mascot share one grid cell, the mascot peeking out at
+   the bottom left. */
+.hero-visual {
+  display: grid;
+  justify-self: center;
+  & > * { grid-area: 1 / 1; }
+  & .shot::before { inset: 8% -18% 2%; }
+  @media (width > 820px) {
+    /* Grows the phone to 280px, but keeps all of it on screen on short
+       laptop displays. svh rather than dvh, so it doesn't resize while
+       mobile browser toolbars slide in and out. */
+    & .shot { --phone-w: clamp(220px, (100svh - 14rem) * 600 / 1192, 280px); }
+  }
+}
+.hero-mascot {
+  inline-size: clamp(120px, 15vw, 190px);
+  align-self: end;
+  justify-self: start;
+  translate: -55% 10px;
+  filter: drop-shadow(0 16px 24px color-mix(in srgb, var(--sand-900) 12%, transparent));
+}
+
+.rows { display: grid; gap: var(--space-lg); }
+.row {
+  display: grid;
+  gap: var(--space-md);
+  align-items: center;
+  text-align: center;
+  grid-template-areas: "shot" "text";
+  & > .shot { grid-area: shot; }
+  & > :not(.shot) { grid-area: text; }
+  &:nth-child(2) { --blob: var(--sand-200); }
+
+  & h3 {
+    font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+    line-height: 1.2;
+    font-weight: 800;
+    color: var(--sand-900);
+    margin-block-end: var(--space-sm);
+  }
+  & p {
+    font-size: 1.1rem;
+    color: var(--sand-600);
+    max-inline-size: 28rem;
+    margin-inline: auto;
+  }
+
+  @media (width > 820px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "shot text";
+    gap: var(--space-xl);
+    text-align: start;
+    & .shot { --phone-w: 260px; }
+    & p { margin-inline: 0; }
+    &:nth-child(even) { grid-template-areas: "text shot"; }
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .row .phone {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+    .row:nth-child(even) .phone { --tilt: 3deg; }
+    @keyframes rise {
+      from { opacity: 0; translate: 0 60px; rotate: var(--tilt, -3deg); }
+    }
+  }
+}
+
+.pill {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 0.2rem 0.8rem;
+  border-radius: var(--radius-pill);
+  margin-block-end: var(--space-sm);
+  color: var(--green-800);
+  background: var(--green-100);
+  &.muted { color: var(--sand-700); background: var(--sand-200); }
+}
+.tag {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sources {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: var(--space-md);
+}
+.source {
+  /* Cards side by side share their rows through subgrid, so logos, titles,
+     text and phones line up across cards however long the text is. */
+  display: grid;
+  grid-row: span 5;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+  justify-items: center;
+  text-align: center;
+  background: white;
+  border: 2px solid var(--sand-200);
+  border-radius: var(--radius-card);
+  padding: var(--space-lg) var(--space-md) 0;
+  overflow: clip;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  & h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--sand-900);
+    margin-block-end: 0.5rem;
+  }
+  & p { color: var(--sand-600); max-inline-size: 26rem; }
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: var(--green-200);
+      box-shadow: 0 12px 32px color-mix(in srgb, var(--sand-900) 5%, transparent);
+      & .peek .phone { translate: 0; }
+    }
+  }
+}
+.source-logo {
+  block-size: 72px;
+  display: grid;
+  place-items: center;
+  margin-block-end: var(--space-sm);
+}
+/* The top of a phone peeks out of the card's bottom edge. */
+.peek {
+  --phone-w: 230px;
+  padding-block-start: var(--space-lg);
+  block-size: 300px;
+  overflow: clip;
+  & .phone {
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+    padding-block-end: 0;
+    translate: 0 24px;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: translate 0.35s cubic-bezier(.2, .8, .2, 1);
+    }
+  }
+  & .phone img { border-end-start-radius: 0; border-end-end-radius: 0; }
+}
+
+.how {
+  background: var(--green-800);
+  color: var(--green-100);
+  & h2 { color: white; }
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: var(--space-md);
+  list-style: none;
+  counter-reset: step;
+}
+.step {
+  counter-increment: step;
+  padding: var(--space-md);
+  &::before {
+    content: counter(step);
+    display: grid;
+    place-items: center;
+    inline-size: 48px;
+    aspect-ratio: 1;
+    margin: 0 auto var(--space-sm);
+    border-radius: 50%;
+    background: color-mix(in srgb, white 15%, transparent);
+    color: white;
+    font-weight: 800;
+    font-size: 1.2rem;
+  }
+  & h3 {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-block-end: 0.4rem;
+  }
+  & p {
+    font-size: 0.95rem;
+    color: var(--green-200);
+    line-height: 1.6;
+  }
+}
+
+.closing {
+  display: grid;
+  gap: var(--space-md);
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  background: var(--green-50);
+  border: 2px solid var(--green-200);
+  border-radius: var(--radius-card);
+  padding: var(--space-md);
+
+  & img { inline-size: 110px; }
+  & h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); }
+  & p {
+    color: var(--sand-600);
+    font-size: 1.05rem;
+    max-inline-size: 42rem;
+  }
+  & p + p { margin-block-start: 0.75rem; }
+  & strong { color: var(--green-800); }
+
+  @media (width > 820px) {
+    grid-template-columns: auto 1fr;
+    gap: var(--space-lg);
+    justify-items: start;
+    text-align: start;
+    padding: var(--space-lg);
+    & img { inline-size: 150px; }
+  }
+}
+
+/* --- LEGAL PAGES --- */
+
+.legal {
+  inline-size: 100%;
+  max-inline-size: 42rem;
+  margin-inline: auto;
+  padding: 4rem 1.5rem;
+  line-height: 1.8;
+  /* German compounds like "Datenschutzerklärung" are wider than a small
+     phone's screen, so let the browser hyphenate them. */
+  hyphens: auto;
+
+  & h1 {
+    font-size: clamp(1.6rem, 1rem + 3vw, 2rem);
+    font-weight: 800;
+    color: var(--sand-900);
+    margin-block-end: 0.5rem;
+  }
+  & h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-block: 2rem 0.5rem;
+  }
+  & p, & ul { margin-block-end: 1rem; color: var(--sand-700); }
+  & ul { padding-inline-start: 1.5rem; }
+  & li { margin-block-end: 0.3rem; }
+}
+.back {
+  display: inline-block;
+  margin-block-end: 2rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.date {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-block-end: 2rem;
+}
