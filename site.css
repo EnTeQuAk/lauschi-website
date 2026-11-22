@@ -409,6 +409,48 @@ h2 {
   }
 }
 
+/* Native <details>, so answers open without JS and stay in the page text. */
+.questions {
+  display: grid;
+  gap: var(--space-sm);
+  max-inline-size: 46rem;
+  margin-inline: auto;
+
+  & details {
+    background: white;
+    border: 2px solid var(--sand-200);
+    border-radius: var(--radius-card);
+    padding: var(--space-sm) var(--space-md);
+    &[open] { border-color: var(--green-200); }
+  }
+  & summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 1.1rem;
+    line-height: 1.4;
+    font-weight: 800;
+    color: var(--sand-900);
+    cursor: pointer;
+    list-style: none;
+    &::-webkit-details-marker { display: none; }
+    &::after {
+      content: '+' / '';
+      flex-shrink: 0;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: var(--green-700);
+      transition: rotate 0.2s;
+    }
+  }
+  & [open] summary::after { rotate: 45deg; }
+  & p {
+    margin-block-start: 0.5rem;
+    color: var(--sand-600);
+  }
+}
+
 .closing {
   display: grid;
   gap: var(--space-md);
