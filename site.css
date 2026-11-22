@@ -65,9 +65,6 @@ body {
   background: var(--sand-50);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
-  /* Keeps the decorative blobs and the hero mascot from causing sideways
-     scrolling. Unlike hidden, clip doesn't turn body into a scroll container. */
-  overflow-x: clip;
 }
 
 h1, h2, h3 { text-wrap: balance; }
@@ -109,6 +106,12 @@ footer {
 main > section {
   padding-block: var(--space-xl);
   padding-inline: max(var(--space-md), (100% - var(--max-w)) / 2);
+  /* Cuts the decorative blobs and the hero mascot off at the screen edge, so
+     they can't make the page scroll sideways. This sits on the sections and
+     not on body, because browsers hand body's overflow to the viewport, where
+     clip turns into hidden and the page can still be scrolled. See
+     https://drafts.csswg.org/css-overflow-3/#overflow-propagation */
+  overflow-x: clip;
 }
 
 h2 {
